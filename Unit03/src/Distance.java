@@ -22,7 +22,7 @@ public class Distance
 
 	public Distance(int x1, int y1, int x2, int y2)
 	{
-		setCoordinates(x1, y2, x2, y2);
+		setCoordinates(x1, y1, x2, y2);
 	}
 
 	public void setCoordinates(int x1, int y1, int x2, int y2)
@@ -37,7 +37,7 @@ public class Distance
 	public void calcDistance()
 	{
 		// calculates the distance between two coordinate points as a double
-		distance = Math.sqrt(Math.pow((yTwo - yOne), 2) + Math.pow((xTwo - xOne), 2));
+		distance = Math.sqrt(Math.pow(((double)yTwo - (double)yOne), 2) + Math.pow(((double)xTwo - (double)xOne), 2));
 	}
 	
 	public double getDistance()
