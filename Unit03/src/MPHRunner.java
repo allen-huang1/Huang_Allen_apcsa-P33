@@ -31,6 +31,22 @@ public class MPHRunner
 		
 		//add more test cases
 		
+		out.print("Enter another distance :: ");
+		dist = keyboard.nextInt();
+
+		out.print("Enter more hours :: ");
+		hrs = keyboard.nextInt();
+
+		out.print("Enter more minutes :: ");
+		mins = keyboard.nextInt();
+		
+		MilesPerHour anotherTest = new MilesPerHour(dist, hrs, mins);
+		anotherTest.calcMPH();
+		anotherTest.print();
+		
+		MilesPerHour finalTest = new MilesPerHour(67, 2, 48);
+		finalTest.calcMPH();
+		finalTest.print();
 		
 	}
 }

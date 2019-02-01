@@ -23,18 +23,25 @@ public class MilesPerHour
 
 	public MilesPerHour(int dist, int hrs, int mins)
 	{
+		setNums(dist, hrs, mins);
+		calcMPH();
 	}
 
 	public void setNums(int dist, int hrs, int mins)
 	{
+		distance = dist;
+		hours = hrs;
+		minutes = mins;
 	}
 
 	public void calcMPH()
 	{
+		mph = (double)distance / (hours + (double)minutes/60);
 	}
 
 	public void print()
 	{
+		System.out.println("The distance traveled is " + String.format("%.3f", mph) + " mph.");
 	}
 	
 	//create a print or toString or both
