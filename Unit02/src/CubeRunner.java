@@ -1,7 +1,7 @@
 //(c) A+ Computer Science
 //www.apluscompsci.com
-//Name -
-//Date -
+//Name - Allen Huang
+//Date -1/31/2019
 
 public class CubeRunner
 {

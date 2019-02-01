@@ -1,7 +1,7 @@
-//© A+ Computer Science  -  www.apluscompsci.com
-//Name -
-//Date -
-//Class -
+//ï¿½ A+ Computer Science  -  www.apluscompsci.com
+//Name - Allen Huang
+//Date - 1/31/2019
+//Class - APCSA
 //Lab  - 
 
 public class LineRunner

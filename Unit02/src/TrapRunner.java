@@ -1,5 +1,5 @@
-//© A+ Computer Science  -  www.apluscompsci.com
-//Name -
+//ï¿½ A+ Computer Science  -  www.apluscompsci.com
+//Name - Allen Huang
 //Date -
 //Class -
 //Lab  - 
