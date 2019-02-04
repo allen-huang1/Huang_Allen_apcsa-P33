@@ -12,7 +12,8 @@ public class WordsCompareRunner
 {
    public static void main( String args[] )
    {
-		//add test cases
+		WordsCompare one = new WordsCompare("one", "two");
+		System.out.println(one.toString());
 
 	}
 }

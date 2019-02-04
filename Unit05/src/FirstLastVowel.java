@@ -10,10 +10,10 @@ public class FirstLastVowel
 	{
 	   // define a string of vowels that we can use to check if characters are vowels without ten "if" statements
 	   String vowels = "aeiouAEIOU";
-		if ((vowels.contains(a.charAt(0))) {
+		if ((vowels.indexOf(a.charAt(0)) + vowels.indexOf(a.charAt(a.length()-1)) > -2)) {
 			return "yes";
-		// the index is -1 if the character is not present in 0, so the program returns "yes" if the character
-			//has a nonnegative index
+		/* the index is -1 if the character is not present in vowels, so the program returns "yes" if one of the characters
+			returns a value greater than -2 */
 		}
 		return "no";
 	}
