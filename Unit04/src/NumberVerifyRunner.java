@@ -23,6 +23,12 @@ public class NumberVerifyRunner
 		System.out.println("10 is odd :: " + NumberVerify.isOdd(10));
 		System.out.println("10 is even :: " + NumberVerify.isEven(10));
 		
+		System.out.println("\n");
+		System.out.println("15 is odd :: " + NumberVerify.isOdd(15));
+		System.out.println("15 is even :: " + NumberVerify.isEven(15));
 		
+		System.out.println("\n");
+		System.out.println("10384397 is odd :: " + NumberVerify.isOdd(10384397));
+		System.out.println("10384397 is even :: " + NumberVerify.isEven(10384397));
 	}
 }

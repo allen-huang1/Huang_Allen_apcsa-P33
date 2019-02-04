@@ -18,16 +18,18 @@ public class Distance
 	public Distance()
 	{
 		setCoordinates(0, 0, 0, 0);
+		distance = 0.0;
 	}
 
 	public Distance(int x1, int y1, int x2, int y2)
 	{
 		setCoordinates(x1, y1, x2, y2);
+		calcDistance();
 	}
 
 	public void setCoordinates(int x1, int y1, int x2, int y2)
 	{
-		// changes local variables based on input integers
+		// changes instance variables based on input integers
 		xOne = x1;
 		yOne = y1;
 		xTwo = x2;
