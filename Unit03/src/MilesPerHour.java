@@ -41,7 +41,7 @@ public class MilesPerHour
 
 	public void print()
 	{
-		System.out.println("The distance traveled is " + String.format("%.3f", mph) + " mph.");
+		System.out.println("The speed traveled is " + String.format("%.3f", mph) + " mph.");
 	}
 	
 	//create a print or toString or both

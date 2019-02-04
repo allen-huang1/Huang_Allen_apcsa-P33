@@ -27,7 +27,7 @@ public class Distance
 
 	public void setCoordinates(int x1, int y1, int x2, int y2)
 	{
-		// changes global variables based on input integers
+		// changes local variables based on input integers
 		xOne = x1;
 		yOne = y1;
 		xTwo = x2;
