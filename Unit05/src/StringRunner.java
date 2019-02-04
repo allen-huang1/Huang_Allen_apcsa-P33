@@ -15,5 +15,14 @@ public class StringRunner
 	{
 		StringOddOrEven cat = new StringOddOrEven("cat");
 		System.out.println(cat.toString());
+		
+		StringOddOrEven moose = new StringOddOrEven("moose");
+		System.out.println(moose.toString());
+		
+		StringOddOrEven person = new StringOddOrEven("person");
+		System.out.println(person.toString());
+		
+		StringOddOrEven yeet = new StringOddOrEven("yeet");
+		System.out.println(yeet.toString());
 	}
 }
