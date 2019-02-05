@@ -17,5 +17,11 @@ public class WordRunner
 		
 		Word jukebox = new Word("JukeBox");
 		System.out.println(jukebox.toString());
+		
+		jukebox.setString("TCEA");
+		System.out.println(jukebox.toString());
+		
+		jukebox.setString("UIL");
+		System.out.println(jukebox.toString());
 	}
 }

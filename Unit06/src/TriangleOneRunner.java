@@ -17,5 +17,14 @@ public class TriangleOneRunner
 		
 		TriangleOne poppins = new TriangleOne("supercalifragilisticexpialidocious");
 		poppins.print();
+		
+		TriangleOne a = new TriangleOne("a");
+		a.print();
+		
+		TriangleOne it = new TriangleOne("it");
+		it.print();
+		
+		TriangleOne abcd = new TriangleOne("abcd");
+		abcd.print();
 	}
 }

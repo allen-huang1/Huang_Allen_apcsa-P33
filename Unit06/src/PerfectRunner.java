@@ -20,5 +20,23 @@ public class PerfectRunner
 		
 		Perfect four = new Perfect(14);
 		System.out.println(four.toString());
+		
+		four.setNumber(8128);
+		System.out.println(four.toString());
+		
+		four.setNumber(1245);
+		System.out.println(four.toString());
+		
+		four.setNumber(33);
+		System.out.println(four.toString());
+		
+		four.setNumber(28);
+		System.out.println(four.toString());
+		
+		four.setNumber(27);
+		System.out.println(four.toString());
+		
+		four.setNumber(33550336);
+		System.out.println(four.toString());
 	}
 }
