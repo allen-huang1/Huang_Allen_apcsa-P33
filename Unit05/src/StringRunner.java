@@ -16,13 +16,25 @@ public class StringRunner
 		StringOddOrEven cat = new StringOddOrEven("cat");
 		System.out.println(cat.toString());
 		
-		StringOddOrEven moose = new StringOddOrEven("moose");
-		System.out.println(moose.toString());
+		cat.setString("boot");
+		System.out.println(cat.toString());
 		
-		StringOddOrEven person = new StringOddOrEven("person");
-		System.out.println(person.toString());
+		cat.setString("it");
+		System.out.println(cat.toString());
 		
-		StringOddOrEven yeet = new StringOddOrEven("yeet");
-		System.out.println(yeet.toString());
+		cat.setString("a");
+		System.out.println(cat.toString());
+		
+		cat.setString("eleven");
+		System.out.println(cat.toString());
+		
+		cat.setString("thirteen");
+		System.out.println(cat.toString());
+		
+		cat.setString("odd");
+		System.out.println(cat.toString());
+		
+		cat.setString("even");
+		System.out.println(cat.toString());
 	}
 }
