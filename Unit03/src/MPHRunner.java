@@ -14,6 +14,23 @@ public class MPHRunner
 {
 	public static void main( String[] args )
 	{
+		MilesPerHour finalTest = new MilesPerHour(45, 0, 32);
+		finalTest.calcMPH();
+		finalTest.print();
+		
+		MilesPerHour finalTest2 = new MilesPerHour(96, 1, 43);
+		finalTest2.calcMPH();
+		finalTest2.print();
+		
+		MilesPerHour finalTest3 = new MilesPerHour(100, 2, 25);
+		finalTest3.calcMPH();
+		finalTest3.print();
+		
+		MilesPerHour finalTest4 = new MilesPerHour(50, 2, 25);
+		finalTest4.calcMPH();
+		finalTest4.print();
+		
+		
 		Scanner keyboard = new Scanner(in);
 
 		out.print("Enter the distance :: ");
@@ -44,9 +61,6 @@ public class MPHRunner
 		anotherTest.calcMPH();
 		anotherTest.print();
 		
-		MilesPerHour finalTest = new MilesPerHour(67, 2, 48);
-		finalTest.calcMPH();
-		finalTest.print();
 		
 	}
 }

@@ -20,6 +20,24 @@ public class DistanceRunner
 		Distance myDistance = new Distance(1, 2, 3, 5);
 		myDistance.print();
 		
+		myDistance.setCoordinates(1, 9, 14, 2);
+		myDistance.print();
+		
+		myDistance.setCoordinates(1, 7, 18, 3);
+		myDistance.print();
+		
+		myDistance.setCoordinates(6, 4, 2, 2);
+		myDistance.print();
+		
+		myDistance.setCoordinates(4, 4, 5, 3);
+		myDistance.print();
+		
+		myDistance.setCoordinates(1, 1, 2, 9);
+		myDistance.print();
+		
+		myDistance.setCoordinates(1, 7, 2, 9);
+		myDistance.print();
+		
 		out.print("Enter the first x-coordinate: ");
 		int x1 = keyboard.nextInt();
 		
