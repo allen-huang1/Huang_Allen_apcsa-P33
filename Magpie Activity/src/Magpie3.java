@@ -30,13 +30,9 @@ public class Magpie3
 	public String getResponse(String statement)
 	{
 		String response = "";
-		if (statement.length() == 0)
-		{
+		statement.trim();
+		if (statement.length() <= 0) {
 			response = "Say something, please.";
-		}
-		else if (findKeyword(statement, "no") >= 0)
-		{
-			response = "Why so negative?";
 		}
 		else if (findKeyword(statement, "mother") >= 0
 				|| findKeyword(statement, "father") >= 0
@@ -44,6 +40,38 @@ public class Magpie3
 				|| findKeyword(statement, "brother") >= 0)
 		{
 			response = "Tell me more about your family.";
+		}
+		else if (findKeyword(statement, "dog") >= 0
+				|| findKeyword(statement, "cat") >= 0)
+				{
+			response = "Tell me more about your pets";
+				}
+		else if (findKeyword(statement, "Mauro") >= 0 
+				|| findKeyword(statement, "mauro") >= 0)
+		{
+			response = "Your teacher sounds like a wise man.";
+		}
+		//additional keyword/response pair one
+		else if (findKeyword(statement, "friend") >= 0
+				|| findKeyword(statement, "people") >= 0)
+		{
+			response = "You sound like a very popular person.";
+		}
+		//additional keyword/response pair two
+		else if (findKeyword(statement, "school") >= 0 
+				|| findKeyword(statement, "grades") >= 0 
+				|| findKeyword(statement, "student") >= 0)
+		{
+			response = "You sound like a good student.";
+		}
+		//additional keyword/response pair three
+		else if (findKeyword(statement, "yes") >= 0)
+		{
+			response = "That's the spirit!";
+		}
+		else if (findKeyword(statement, "no") >= 0)
+		{
+			response = "Why so negative?";
 		}
 		else
 		{
@@ -144,7 +172,7 @@ public class Magpie3
 	 */
 	private String getRandomResponse()
 	{
-		final int NUMBER_OF_RESPONSES = 4;
+		final int NUMBER_OF_RESPONSES = 6;
 		double r = Math.random();
 		int whichResponse = (int) (r * NUMBER_OF_RESPONSES);
 		String response = "";
@@ -164,6 +192,14 @@ public class Magpie3
 		else if (whichResponse == 3)
 		{
 			response = "You don't say.";
+		}
+		else if (whichResponse == 4)
+		{
+			response = "I've never thought of that before.";
+		}
+		else if (whichResponse == 5)
+		{
+			response = "Haha, that's pretty funny!";
 		}
 
 		return response;
