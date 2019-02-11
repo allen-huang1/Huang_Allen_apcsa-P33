@@ -1,0 +1,19 @@
+//(c) A+ Computer Science
+// www.apluscompsci.com
+//Name -  
+
+import static java.lang.System.*;
+
+public class DoubleRunner
+{
+	public static void main(String[] args)
+	{
+		BiggestDouble run = new BiggestDouble(4.5,6.7,7.8,9.0);
+		System.out.println(run);
+		System.out.println("biggest = " + run.getBiggest() + "\n");
+
+		//add more test cases
+		BiggestDouble yes = new BiggestDouble(1.2, 3.4, 5.6, 7.8);
+		System.out.println(yes);
+	}
+}
