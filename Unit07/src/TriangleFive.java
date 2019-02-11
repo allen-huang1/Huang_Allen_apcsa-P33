@@ -37,15 +37,13 @@ public class TriangleFive
 		for (int i = amount; i > 0; i--)
 		{
 			//keeps track of which row we are on
-			int j = i;
+			int j = 0;
 			char temp = letter;
-			while (j > 0)
+			while (j < i)
 			{
-				int k = amount;
-				while (k >= amount - k)
+				for (int k = amount - j; k > 0; k--)
 				{
 					output += temp;
-					k--;
 				}
 				//changes the value of temp and decreases the number of letters the 
 				// next character will be printed
@@ -57,7 +55,7 @@ public class TriangleFive
 					temp ++;
 				}
 				output += " ";
-				j--;
+				j++;
 			}
 			output += "\n";
 			
