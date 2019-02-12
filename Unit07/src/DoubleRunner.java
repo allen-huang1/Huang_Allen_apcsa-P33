@@ -15,5 +15,8 @@ public class DoubleRunner
 		//add more test cases
 		BiggestDouble yes = new BiggestDouble(1.2, 3.4, 5.6, 7.8);
 		System.out.println(yes);
+		
+		yes.setDoubles(14.51,6.17,71.8,1.0);
+		System.out.println(yes);
 	}
 }
