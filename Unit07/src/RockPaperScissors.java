@@ -66,6 +66,10 @@ public class RockPaperScissors
 		output += "player plays " + playChoice;
 		output += "\ncomputer plays " + compChoice;
 		output += "\nwinner is " + determineWinner();
+		if (!(playChoice.equals("R") || playChoice.equals("S") || playChoice.equals("P"))) 
+		{
+			output += "\nplayer did not pick a valid choice, computer wins.";
+		}
 		return output;
 	}
 }

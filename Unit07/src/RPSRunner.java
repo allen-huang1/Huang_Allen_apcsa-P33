@@ -20,7 +20,8 @@ public class RPSRunner
 				player = keyboard.nextLine();
 				RockPaperScissors game = new RockPaperScissors(player);	
 				System.out.println(game.toString());
-			} while (player != "n");
+				out.println("play again?");
+			} while (!player.equals("n") || player.equals("N"));
 		
 	}
 }
