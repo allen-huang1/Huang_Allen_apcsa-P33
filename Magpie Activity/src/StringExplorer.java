@@ -29,12 +29,15 @@ public class StringExplorer
 		
 		//  Try other methods here:
 		int count = 0;
+		int i = 0;
 		sample = "Computer Science is the best, the greatest, and the most wonderful subject to study!";
-		for (int i = 0; i < sample.length() - 2; i++)
-		{
-			if (sample.substring(i, i+3).equals("the"))
-			{
+		while (i<sample.length()-3) {
+			if (sample.substring(i+1).indexOf("the")>=0){
 				count++;
+				i=sample.substring(i+1).indexOf("the") + i + 1;
+			}
+			else {
+				i=sample.length();
 			}
 		}
 		System.out.println("The string has " + count + " occurrences of 'the'.");
