@@ -75,26 +75,6 @@ public class ElevensBoard extends Board {
 	public boolean anotherPlayIsPossible() {
 		List<Integer> indices = new ArrayList<Integer>(cardIndexes());
 		return (containsPairSum11(indices) || containsJQK(indices));
-		/* for (int i: cardIndexes()) {
-			List<Integer> no_i = new ArrayList<Integer> (cardIndexes());
-			no_i.remove(i);
-			for (int j: no_i) {
-				if (containsPairSum11(Arrays.asList(i, j))) return true;
-			}
-		}
-		for (int i: cardIndexes()) {
-			List<Integer> no_i = new ArrayList<Integer> (cardIndexes());
-			no_i.remove(i);
-			for (int j: no_i) {
-				List<Integer> no_j = new ArrayList<Integer> (no_i);
-				no_j.remove(j);
-				for (int k: no_j) {
-					if (containsJQK(Arrays.asList(i, j, k))) return true;
-				}
-			}
-		}
-		return false;
-		*/
 	}
 
 	/**
