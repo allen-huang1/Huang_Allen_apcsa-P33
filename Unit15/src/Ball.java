@@ -50,15 +50,17 @@ public class Ball extends Block implements Collidable
 	}
    
 
-   public void moveAndDraw(Graphics window)
-   {
-   	//draw a white ball at old ball location
-      setX(getX()+xSpeed);
-		//setY
-      setY(getY() + ySpeed);
-		//draw the ball at its new location
-      draw(window);
-   }
+	public void moveAndDraw(Graphics window)
+	   {
+	   	//draw a white ball at old ball location
+		   draw(window,Color.WHITE);
+	      setX(getX()+xSpeed);
+			//setY
+	      setY(getY()+ySpeed);
+			//draw the ball at its new location
+	      draw(window);
+	      
+	   }
    
 	public boolean equals(Object obj)
 	{

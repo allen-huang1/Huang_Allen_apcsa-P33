@@ -87,7 +87,7 @@ public class Pong extends Canvas implements KeyListener, Runnable
 			}
 			
 			ball.draw(graphToBack, Color.WHITE);
-			ball= new BlinkyBall(350,200);
+			ball= new Ball(300 + (int) (Math.random() * 200),200 + (int) (Math.random() * 200),10,10,Color.BLACK, (int) (Math.pow(-1,  (int) (Math.random() * 2))) * 3, (int) (Math.random() * 3 + 1) * (int) (Math.pow(-1,  (int) (Math.random() * 2))));
 			ball.moveAndDraw(graphToBack);
 		}
 
@@ -112,22 +112,22 @@ public class Pong extends Canvas implements KeyListener, Runnable
 
 		//see if the paddles need to be moved
 
-		if(keys[0] == true)
+		if(keys[0] == true && leftPaddle.getY() >= 0)
 		{
 			leftPaddle.moveUpAndDraw(graphToBack);
 		}
 		
-		if(keys[1] == true)
+		if(keys[1] == true && leftPaddle.getY() <= getHeight() - leftPaddle.getHeight())
 		{
 			leftPaddle.moveDownAndDraw(graphToBack);
 		}
 		
-		if(keys[2] == true)
+		if(keys[2] == true && rightPaddle.getY() >= 0)
 		{
 			rightPaddle.moveUpAndDraw(graphToBack);
 		}
 		
-		if(keys[3] == true)
+		if(keys[3] == true && rightPaddle.getY() <= getHeight()-leftPaddle.getHeight())
 		{
 			rightPaddle.moveDownAndDraw(graphToBack);
 		}
