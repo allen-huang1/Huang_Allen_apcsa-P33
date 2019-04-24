@@ -11,7 +11,7 @@ public class PictureTester
   /** Method to test zeroBlue */
   public static void testZeroBlue()
   {
-    Picture beach = new Picture("beach.jpg");
+    Picture beach = new Picture("src/images/beach.jpg");
     beach.explore();
     beach.zeroBlue();
     beach.explore();
@@ -65,7 +65,7 @@ public class PictureTester
   /** Method to test mirrorTemple */
   public static void testMirrorTemple()
   {
-    Picture temple = new Picture("temple.jpg");
+    Picture temple = new Picture("src/images/temple.jpg");
     temple.explore();
     temple.mirrorTemple();
     temple.explore();
@@ -88,9 +88,16 @@ public class PictureTester
   /** Method to test the collage method */
   public static void testCollage()
   {
-    Picture canvas = new Picture("640x480.jpg");
+    Picture canvas = new Picture("src/images/640x480.jpg");
     canvas.createCollage();
     canvas.explore();
+  }
+  
+  public static void testCopy()
+  {
+	  Picture canvas = new Picture("src/images/640x480.jpg");
+	  canvas.myCollage();
+	  canvas.explore();
   }
   
   /** Method to test edgeDetection */
@@ -99,6 +106,13 @@ public class PictureTester
     Picture swan = new Picture("src/images/swan.jpg");
     swan.edgeDetection(10);
     swan.explore();
+  }
+  
+  public static void testEdgeDetection2() {
+	  Picture swan = new Picture("src/images/swan.jpg");
+	  swan.explore();
+	  swan.edgeDetection2(17);
+	  swan.explore();
   }
   
   /** Main method for testing.  Every class can have a main
@@ -125,7 +139,7 @@ public class PictureTester
     //testMirrorDiagonal();
     //testCollage();
     //testCopy();
-    testEdgeDetection();
+    //testEdgeDetection();
     //testEdgeDetection2();
     //testChromakey();
     //testEncodeAndDecode();

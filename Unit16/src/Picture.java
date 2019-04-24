@@ -185,6 +185,23 @@ public class Picture extends SimplePicture
 	    } 
   }
   
+  public void mirrorHorizontalBottomToTop()
+  {
+ 	 Pixel[][] pixels = this.getPixels2D();
+ 	 Pixel topPixel = null;
+ 	 Pixel bottomPixel = null;
+ 	 int width = pixels[0].length;
+ 	 for (int row = pixels.length / 2 - 1; row < pixels.length; row++)
+ 	 {
+ 	   for (int col = 0; col < width - 1; col++)
+ 	   {
+ 		   	topPixel = pixels[row][col];
+ 	        bottomPixel = pixels[pixels.length - 1 - row][col];
+ 	        bottomPixel.setColor(topPixel.getColor());
+ 	    }
+ 	 }
+   }
+  
   public void mirrorDiagonal()
   {
  	 Pixel[][] pixels = this.getPixels2D();
@@ -217,9 +234,9 @@ public class Picture extends SimplePicture
 			{
 				if (pixelObj.getRed() < 24 && pixelObj.getBlue() > 155)
 				{
-					 pixelObj.setRed(3*pixelObj.getRed()/2);
-					 pixelObj.setBlue(3*pixelObj.getBlue()/2);
-					 pixelObj.setGreen(3*pixelObj.getGreen()/2);
+					 pixelObj.setRed(pixelObj.getRed() + 30);
+					 pixelObj.setBlue(pixelObj.getBlue() + 30);
+					 pixelObj.setGreen(pixelObj.getGreen() + 30);
 				}
 			}
 		}
@@ -320,12 +337,29 @@ public class Picture extends SimplePicture
       }
     }   
   }
+  
+  public void copy2 (Picture fromPic, int startRow, int endRow, int startCol, int endCol)
+  {
+	  Pixel fromPixel = null;
+	  Pixel toPixel = null;
+	  Pixel[][] toPixels = this.getPixels2D();
+	  Pixel[][] fromPixels = fromPic.getPixels2D();
+	  for (int fromRow = 0, toRow = startRow; fromRow < fromPixels.length && toRow < toPixels.length; fromRow++, toRow++)
+	  {
+		  for (int fromCol = 0, toCol = startCol; fromCol < fromPixels[0].length && toCol < toPixels[0].length; fromCol++, toCol++)
+		  {
+			  fromPixel = fromPixels[fromRow][fromCol];
+			  toPixel = toPixels[toRow][toCol];
+			  toPixel.setColor(fromPixel.getColor());
+		  }
+	  }
+  }
 
   /** Method to create a collage of several pictures */
   public void createCollage()
   {
-    Picture flower1 = new Picture("flower1.jpg");
-    Picture flower2 = new Picture("flower2.jpg");
+    Picture flower1 = new Picture("src/images/flower1.jpg");
+    Picture flower2 = new Picture("src/images/flower2.jpg");
     this.copy(flower1,0,0);
     this.copy(flower2,100,0);
     this.copy(flower1,200,0);
@@ -338,6 +372,17 @@ public class Picture extends SimplePicture
     this.write("collage.jpg");
   }
   
+  public void myCollage() {
+	  Picture picture1 = new Picture("src/images/flower1.jpg");
+	  Picture picture2 = new Picture("src/images/beach.jpg");
+	  Picture picture3 = new Picture("src/images/blueMotorcycle.jpg");
+      this.copy2(picture1, 0, 400, 0, 400);
+      this.copy2(picture2, 80, 180, 100, 295);
+      this.copy2(picture3,  200, 350, 200, 400);
+      this.mirrorVertical();
+      this.mirrorHorizontal();
+      this.write("myCollage.jpg");
+  }
   
   /** Method to show large changes in color 
     * @param edgeDist the distance for finding edges
@@ -383,6 +428,68 @@ public class Picture extends SimplePicture
     		}
     	}
     }
+  }
+  
+  public void edgeDetection2(int edgeDist) {
+	  Pixel centerPixel = null;
+	  Pixel[][] pixels = this.getPixels2D();
+	  int[][] values = new int[pixels.length][pixels[0].length];
+	  Pixel compare1 = null;
+	  Pixel compare2 = null;
+	  Pixel compare3 = null;
+	  Color compareColor = null;
+	  for (int row = 0; row < pixels.length-1;row++) {
+		  for (int col = 1; col < pixels[0].length-2;col++) {
+			  centerPixel = pixels[row][col];
+			  //compares three lower pixels
+			  compare1 = pixels[row+1][col-1];
+			  compare2 = pixels[row+1][col];
+			  compare3 = pixels[row+1][col+1];
+			  compareColor = avgColor(compare1.getColor(), compare2.getColor(), compare3.getColor());
+			  if (Pixel.colorDistance(centerPixel.getColor(), compareColor) > edgeDist) {
+				  values[row][col] = 1;
+			  }
+			  else {
+			      values[row][col] = 0;
+			  }
+		  }
+	  }
+	  for (int row = 1; row < pixels.length-2;row++) {
+		  for (int col = 0; col < pixels[0].length-1;col++) {
+			  centerPixel = pixels[row][col];
+			  //compares three lower pixels
+			  compare1 = pixels[row-1][col+1];
+			  compare2 = pixels[row][col+1];
+			  compare3 = pixels[row+1][col+1];
+			  compareColor = avgColor(compare1.getColor(), compare2.getColor(), compare3.getColor());
+			  if (Pixel.colorDistance(centerPixel.getColor(), compareColor) > edgeDist) {
+				  values[row][col] = 1;
+			  }
+		  }
+	  }
+	  for (int i = 0; i < values.length; i++) {
+		  for (int j = 0; j < values[0].length; j++) {
+			  if (values[i][j] == 1) {
+				  pixels[i][j].setColor(Color.BLACK);
+			  }
+			  else {
+				  pixels[i][j].setColor(Color.WHITE);
+			  }
+		  }
+	  }
+  }
+  
+  public static Color avgColor(Color one, Color two, Color three) {
+	  int avgRed = (one.getRed() + two.getRed() + three.getRed())/3;
+	  int avgBlue = (one.getBlue() + two.getBlue() + three.getBlue())/3;
+	  int avgGreen = (one.getGreen() + two.getGreen() + three.getGreen())/3;
+	  return new Color(avgRed, avgGreen, avgBlue);
+  }
+  
+  public static int truncate(int a) {
+      if      (a <   0) return 0;
+      else if (a > 255) return 255;
+      else              return a;
   }
   
   
