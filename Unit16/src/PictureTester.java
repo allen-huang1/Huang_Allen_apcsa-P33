@@ -24,6 +24,20 @@ public class PictureTester
 	  beach.explore();
   }
   
+  public static void testKeepOnlyRed() {
+	  Picture beach = new Picture("src/images/beach.jpg");
+	  beach.explore();
+	  beach.keepOnlyRed();
+	  beach.explore();
+  }
+  
+  public static void testKeepOnlyGreen() {
+	  Picture beach = new Picture("src/images/beach.jpg");
+	  beach.explore();
+	  beach.keepOnlyGreen();
+	  beach.explore();
+  }
+  
   public static void testNegate() {
 	  Picture beach = new Picture("src/images/beach.jpg");
 	  beach.explore();
