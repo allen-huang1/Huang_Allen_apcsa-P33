@@ -373,15 +373,22 @@ public class Picture extends SimplePicture
   }
   
   public void myCollage() {
-	  Picture picture1 = new Picture("src/images/flower1.jpg");
-	  Picture picture2 = new Picture("src/images/beach.jpg");
-	  Picture picture3 = new Picture("src/images/blueMotorcycle.jpg");
-      this.copy2(picture1, 0, 400, 0, 400);
-      this.copy2(picture2, 80, 180, 100, 295);
-      this.copy2(picture3,  200, 350, 200, 400);
-      this.mirrorVertical();
-      this.mirrorHorizontal();
-      this.write("myCollage.jpg");
+		Picture flower1 = new Picture("src/images/flower1.jpg");
+	    Picture flower2 = new Picture("src/images/flower2.jpg");
+	    this.copy2(flower1, 50, 0, 100, 0);
+	    this.copy(flower2,100,0);
+	    Picture flowerNegative = new Picture(flower1);
+	    flowerNegative.negate();
+	    this.copy(flowerNegative,200,0);
+	    Picture flowerBlue = new Picture(flower2);
+	    flowerBlue.keepOnlyBlue();
+	    this.copy(flowerBlue,300,0);
+	    Picture flowerMirrored = new Picture(flower1);
+	    flowerMirrored.mirrorHorizontal();
+	    this.copy(flowerMirrored,400,0);
+	    this.copy(flower2,500,0);
+	    this.mirrorVertical();
+	    this.write("src/images/collage.jpg");
   }
   
   /** Method to show large changes in color 
