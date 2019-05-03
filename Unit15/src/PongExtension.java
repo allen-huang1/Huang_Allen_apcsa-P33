@@ -159,25 +159,26 @@ public class PongExtension extends Canvas implements KeyListener, Runnable
 			}
 		}
 		//see if the paddles need to be moved
-			if(keys[0] == true && mainPaddle.getY() >= 85)
-			{
-				mainPaddle.moveUpAndDraw(graphToBack);
-			}
+		if(keys[0] == true && mainPaddle.getY() >= 85)
+		{
+		mainPaddle.moveUpAndDraw(graphToBack);
+		}
+		
+		if(keys[1] == true && mainPaddle.getY() <= 425)
+		{
+			mainPaddle.moveDownAndDraw(graphToBack);
+		}
+		
+		if(keys[2] == true && mainPaddle.getX() >= 85)
+		{
+			mainPaddle.moveLeftAndDraw(graphToBack);
+		}
+		
+		if(keys[3] == true && mainPaddle.getX() <= 665)
+		{
+			mainPaddle.moveRightAndDraw(graphToBack);
+		}
 			
-			if(keys[1] == true && mainPaddle.getY() <= 465)
-			{
-				mainPaddle.moveDownAndDraw(graphToBack);
-			}
-			
-			if(keys[2] == true && mainPaddle.getX() >= 85)
-			{
-				mainPaddle.moveLeftAndDraw(graphToBack);
-			}
-			
-			if(keys[3] == true && mainPaddle.getX() <= 665)
-			{
-				mainPaddle.moveRightAndDraw(graphToBack);
-			}
 		if (blocks.size() == 0) {
 			if (!played) {
 				//set up all variables related to the game
@@ -210,10 +211,14 @@ public class PongExtension extends Canvas implements KeyListener, Runnable
 					}
 				}
 				played = true;
+				graphToBack.setColor(Color.BLUE);
+				graphToBack.drawString("Level 2!", 400, 300);
 			}
 			else {
 				ball.setXSpeed(0);
 				ball.setYSpeed(0);
+				graphToBack.setColor(Color.BLUE);
+				graphToBack.drawString("You win!", 400, 300);
 			}
 		}
 		
