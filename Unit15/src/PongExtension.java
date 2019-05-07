@@ -182,6 +182,8 @@ public class PongExtension extends Canvas implements KeyListener, Runnable
 		if (blocks.size() == 0) {
 			if (!played) {
 				//set up all variables related to the game
+				graphToBack.setColor(Color.WHITE);
+				graphToBack.drawRect(mainPaddle.getX(), mainPaddle.getY(), mainPaddle.getWidth(), mainPaddle.getHeight());
 				ball = new Ball(350, 200);
 				mainPaddle = new PaddleExtension(375, 275, 50, 50, Color.BLUE, 2);
 				//blocks on the left
