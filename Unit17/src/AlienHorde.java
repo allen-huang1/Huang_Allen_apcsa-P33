@@ -10,6 +10,7 @@ import java.io.File;
 import javax.imageio.ImageIO;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
 
 public class AlienHorde
 {
@@ -24,13 +25,13 @@ public class AlienHorde
 		int speed = 2;
 		for (int i=0; i<size; i++)
 		{
-			aliens.add(new Alien(x, y, 30, 30, 1));
-			x += 65;
+			aliens.add(new Alien(x, y, 20, 20, 2));
+			x += 40;
 			if (x >= 670)
 			{
 				x = 80;
 				speed = -speed;
-				y += 80;
+				y += 50;
 			}
 		}
 	}
@@ -50,14 +51,29 @@ public class AlienHorde
 
 	public void moveEmAll()
 	{
-		for (int i = 0; i < aliens.size(); i++)
+		for (Alien a: aliens) 
 		{
-			Alien a = aliens.get(i);
-			a.move("DOWN");
-			if (a.getHeight() > 600)
+			if (a.goingRight()) 
 			{
-				aliens.remove(i);
-				aliens.add(new Alien(a.getX(), 0, a.getWidth(), a.getHeight(), a.getSpeed()));
+				if (a.getX() > 770) 
+				{
+					a.setRight(false);
+					for (int down = 0; down < 50; down++)
+					a.move("DOWN");
+				}
+				else {
+					a.move("RIGHT");
+				}
+			}
+			else {
+				if (a.getX() < 30) {
+					a.setRight(true);
+					for (int down = 0; down < 50; down++)
+					a.move("DOWN");
+				}
+				else {
+					a.move("LEFT");
+				}
 			}
 		}
 	}
@@ -65,12 +81,14 @@ public class AlienHorde
 	public void removeDeadOnes(List<Ammo> shots)
 	{
 		ArrayList<Alien> remove = new ArrayList<Alien>();
+		ArrayList<Ammo> removeShots = new ArrayList<Ammo>();
 		for (Alien al: aliens) {
 	        Rectangle alienBox = new Rectangle(al.getX(), al.getY(), al.getWidth(), al.getHeight());
             for (Ammo shot: shots) {
                 Rectangle shotBox = new Rectangle(shot.getX(), shot.getY(), shot.getWidth(), shot.getHeight());
                 if (alienBox.intersects(shotBox)) {
                     remove.add(al);
+                    removeShots.add(shot);
                     break;
                 }
             }
@@ -78,6 +96,10 @@ public class AlienHorde
 		for (Alien rem: remove)
 		{
 			aliens.remove(rem);
+		}
+		for (Ammo am: removeShots)
+		{
+			shots.remove(am);
 		}
 	}
 	

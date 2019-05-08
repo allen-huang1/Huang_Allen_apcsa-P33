@@ -13,6 +13,8 @@ public class Alien extends MovingThing
 {
 	private int speed;
 	private Image image;
+	private boolean right = true;
+	private boolean moving = false;
 
 	public Alien()
 	{
@@ -72,6 +74,26 @@ public class Alien extends MovingThing
 			break;
 	   }
 	}
+   
+   	public void setRight(boolean b) 
+   	{
+   		right = b;
+   	}
+   	
+   	public boolean goingRight()
+   	{
+   		return right;
+   	}
+   	
+   	public void setMoving(boolean b)
+   	{
+   		moving = b;
+   	}
+   	
+   	public boolean getMoving()
+   	{
+   		return moving;
+   	}
 
 	public void draw( Graphics window )
 	{
