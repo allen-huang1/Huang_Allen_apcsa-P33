@@ -15,6 +15,7 @@ public class AlienHorde
 {
 	private List<Alien> aliens;
 
+
 	public AlienHorde(int size)
 	{
 		aliens = new ArrayList<Alien>(size);
@@ -23,7 +24,7 @@ public class AlienHorde
 		int speed = 2;
 		for (int i=0; i<size; i++)
 		{
-			aliens.add(new Alien(x, y, 2));
+			aliens.add(new Alien(x, y, 30, 30, 1));
 			x += 65;
 			if (x >= 670)
 			{
@@ -49,9 +50,15 @@ public class AlienHorde
 
 	public void moveEmAll()
 	{
-		for (Alien a: aliens)
+		for (int i = 0; i < aliens.size(); i++)
 		{
+			Alien a = aliens.get(i);
 			a.move("DOWN");
+			if (a.getHeight() > 600)
+			{
+				aliens.remove(i);
+				aliens.add(new Alien(a.getX(), 0, a.getWidth(), a.getHeight(), a.getSpeed()));
+			}
 		}
 	}
 
@@ -72,6 +79,27 @@ public class AlienHorde
 		{
 			aliens.remove(rem);
 		}
+	}
+	
+	public boolean gameIsWon()
+	{
+		return (aliens.size() == 0);
+	}
+	
+	public boolean touchingShip(Graphics window, Ship ship)
+	{
+		boolean touching = false;
+		for (Alien al : aliens)
+		{
+			if ( ((ship.getX() >= al.getX() && ship.getX() <= al.getX()+30)
+					|| (ship.getX()+50 >= al.getX() && ship.getX()+50 <= al.getX()+30))
+					&& ((ship.getY()+25 >= al.getY() && ship.getY()+25 <= al.getY()+30)
+					|| (al.getY() <= ship.getY() && ship.getY() <= al.getY()+30)) )
+			{
+				touching = true;
+			}
+		}
+		return touching;
 	}
 
 	public String toString()

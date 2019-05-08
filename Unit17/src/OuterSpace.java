@@ -19,7 +19,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 	private Ship ship;
 	private AlienHorde horde;
 	private Bullets shots;
-	
+	private boolean game = true;
 
 	private boolean[] keys;
 	private BufferedImage back;
@@ -34,13 +34,8 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		//Ship, Alien
 		ship = new Ship(400, 300, 50, 50, 1);
 		shots = new Bullets();
+		shots.add(new Ammo(-10,-10,0));
 		horde = new AlienHorde(20);
-		
-		Alien[] aliens = new Alien[20];
-        for (int i = 0; i < aliens.length; i++) {
-            aliens[i] = new Alien((int) (WIDTH * Math.random()), (int) (HEIGHT * Math.random()), (int) (2 + 3 * Math.random()));
-            horde.add(aliens[i]);
-        }
 
 		this.addKeyListener(this);
 		new Thread(this).start();
@@ -67,10 +62,10 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		//we will draw all changes on the background image
 		Graphics graphToBack = back.createGraphics();
 
-		graphToBack.setColor(Color.BLUE);
-		graphToBack.drawString("StarFighter ", 25, 50 );
 		graphToBack.setColor(Color.BLACK);
 		graphToBack.fillRect(0,0,800,600);
+		graphToBack.setColor(Color.WHITE);
+		graphToBack.drawString("StarFighter ", 25, 50 );
 
 		if(ship.getX()>=-10 && keys[0] == true)
 		{
@@ -88,8 +83,8 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		{
 			ship.move("DOWN");
 		}
-		if (keys[4]) {
-            shots.add(new Ammo(ship.getX(), ship.getY()));
+		if (keys[4] == true) {
+            shots.add(new Ammo(ship.getX()+25, ship.getY()+25, 3));
             keys[4] = false;
         }
 		
@@ -104,8 +99,27 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		shots.moveEmAll();
 		horde.moveEmAll();
 		horde.removeDeadOnes(shots.getList());
-		shots.cleanEmUp(graphToBack);
 
+		if (horde.gameIsWon()==true)
+		{
+	
+			graphToBack.clearRect(0, 0, 800, 600);
+			graphToBack.setColor(Color.RED);
+			graphToBack.drawString("YOU WON!", 350, 300);
+		}
+		
+		if (horde.touchingShip(graphToBack, ship)) {
+			game = false;
+		}
+		
+		if (game == false)
+		{
+			graphToBack.clearRect(0, 0, 800, 600);
+			//setBackground(Color.black);
+			graphToBack.setColor(Color.RED);
+			graphToBack.drawString("YOU LOSE!", 350, 300);
+		}
+		
 		twoDGraph.drawImage(back, null, 0, 0);
 	}
 
@@ -176,6 +190,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
          }
       }catch(Exception e)
       {
+    	  System.out.println("Help");
       }
   	}
 }
