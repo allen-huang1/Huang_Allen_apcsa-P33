@@ -22,17 +22,10 @@ public class AlienHorde
 		aliens = new ArrayList<Alien>(size);
 		int x = 0;
 		int y = 5;
-		int speed = 2;
 		for (int i=0; i<size; i++)
 		{
 			aliens.add(new Alien(x, y, 20, 20, 2));
-			x += 40;
-			if (x >= 670)
-			{
-				x = 80;
-				speed = -speed;
-				y += 50;
-			}
+			x -= 40;
 		}
 	}
 
@@ -58,7 +51,7 @@ public class AlienHorde
 				if (a.getX() > 770) 
 				{
 					a.setRight(false);
-					for (int down = 0; down < 50; down++)
+					for (int down = 0; down < 25; down++)
 					a.move("DOWN");
 				}
 				else {
@@ -68,7 +61,7 @@ public class AlienHorde
 			else {
 				if (a.getX() < 30) {
 					a.setRight(true);
-					for (int down = 0; down < 50; down++)
+					for (int down = 0; down < 25; down++)
 					a.move("DOWN");
 				}
 				else {
