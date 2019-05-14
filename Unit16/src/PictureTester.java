@@ -129,6 +129,17 @@ public class PictureTester
 	  swan.explore();
   }
   
+  public static void testEncode()
+  {
+	  Picture crypt = new Picture("src/images/apple.jpg");
+	  crypt.explore();
+	  Picture message = new Picture("src/images/msg.jpg");
+	  crypt.encode(message);
+	  crypt.explore();
+	  Picture result = crypt.decode();
+	  result.explore();
+  }
+  
   /** Main method for testing.  Every class can have a main
     * method in Java */
   public static void main(String[] args)
@@ -152,7 +163,7 @@ public class PictureTester
     //testMirrorGull();
     //testMirrorDiagonal();
     //testCollage();
-    testCopy();
+    //testCopy();
     //testEdgeDetection();
     //testEdgeDetection2();
     //testChromakey();
@@ -161,5 +172,6 @@ public class PictureTester
     //testSetRedToHalfValueInTopHalf();
     //testClearBlueOverValue(200);
     //testGetAverageForColumn(0);
+	  testEncode();
   }
 }

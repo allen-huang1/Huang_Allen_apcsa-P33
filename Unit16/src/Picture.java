@@ -519,6 +519,140 @@ public class Picture extends SimplePicture
       else              return a;
   }
   
+  public void encode(Picture messagePict)
+  {
+	  Pixel[][] messagePixels = messagePict.getPixels2D();
+	  Pixel[][] currPixels = this.getPixels2D();
+	  Pixel currPixel = null;
+	  Pixel messagePixel = null;
+	  int[][] green = new int[currPixels.length][currPixels[0].length];
+	  for (int row = 0; row < this.getHeight(); row++)
+	  {
+		  for (int col = 0; col < this.getWidth(); col++)
+		  {
+			  currPixel = currPixels[row][col];
+			  green[row][col] = currPixel.getGreen();
+		  }
+	  }
+	  
+	  int[][] keys = createKeys(green);
+	  
+	  for (int row = 0; row < this.getHeight(); row++)
+	  {
+		  for (int col = 0; col < this.getWidth(); col++)
+		  {
+			  currPixel = currPixels[row][col];
+			  messagePixel = messagePixels[row][col];
+			  int key = keys[row][col];
+			  
+			  while (isRelPrime(currPixel.getBlue(), key)) 
+			  {
+				  currPixel.setBlue(currPixel.getBlue()-1);
+			  }
+			  
+			  if (messagePixel.colorDistance(Color.BLACK) < 50)
+			  {
+				  while(!isRelPrime(currPixel.getBlue(), key)) 
+				  {
+					  currPixel.setBlue(currPixel.getBlue() + 1);
+				  }
+			  }
+		  }
+	  }
+  }
+  
+  public static boolean isRelPrime(int n, int mod)
+  {
+	  switch (mod) {
+	  case 360:
+		  return !(n%2==0 || n%3==0 || n%5==0);
+	  case 315:
+		  return !(n%7==0 || n%3==0 || n%5==0);
+	  case 385:
+		  return !(n%5==0 || n%7==0 || n%11==0);
+	  }
+	  return !(n%2==0 || n%3==0 || n%5==0);
+  }
+  
+  public static int[][] createKeys(int[][] input)
+  {
+	  int[][] result = new int[input.length][input[0].length];
+	  int[] values = {360, 315, 385};
+	  for (int row = 0; row < input.length; row++) 
+	  {
+		  for (int col = 0; col < input[0].length; col++)
+		  {
+			  switch (input[row][col]%3) {
+			  case 0:
+				  result[row][col] = 360;
+			  case 1:
+				  result[row][col] = 315;
+			  case 2:
+				  result[row][col] = 385;
+			  }
+		  }
+	  }
+	  return result;
+  }
+  
+  public Picture decode()
+  {
+	  Pixel[][] pixels = this.getPixels2D();
+	  int height = this.getHeight();
+	  int width = this.getWidth();
+	  Pixel currPixel = null;
+	  Pixel messagePixel = null;
+	  Picture messagePicture = new Picture(height,width);
+	  Pixel[][] messagePixels = messagePicture.getPixels2D();
+	  
+	  int[][] green = new int[pixels.length][pixels[0].length];
+	  for (int row = 0; row < this.getHeight(); row++)
+	  {
+		  for (int col = 0; col < this.getWidth(); col++)
+		  {
+			  currPixel = pixels[row][col];
+			  green[row][col] = currPixel.getGreen();
+		  }
+	  }
+	  int[][] keys = createKeys(green);
+	  
+	  int count = 0;
+	  for (int row = 0; row < this.getHeight(); row++)
+	  {
+		  for (int col = 0; col < this.getWidth(); col++)
+		  {
+			  currPixel = pixels[row][col];
+			  messagePixel = messagePixels[row][col];
+			  int key = keys[row][col];
+			  if (isRelPrime(currPixel.getBlue(), key))
+			  {
+				  messagePixel.setColor(Color.BLACK);
+				  count++;
+			  }
+		  }
+	  }
+	  System.out.println(count);
+	  return messagePicture;
+  }
+  
+  
+  public static int[][] multiplyByMatrix(int[][] m1, int[][] m2) {
+      int m1ColLength = m1[0].length; // m1 columns length
+      int m2RowLength = m2.length;    // m2 rows length
+      if(m1ColLength != m2RowLength) return null; // matrix multiplication is not possible
+      int mRRowLength = m1.length;    // m result rows length
+      int mRColLength = m2[0].length; // m result columns length
+      int[][] mResult = new int[mRRowLength][mRColLength];
+      for(int i = 0; i < mRRowLength; i++) {         // rows from m1
+          for(int j = 0; j < mRColLength; j++) {     // columns from m2
+              for(int k = 0; k < m1ColLength; k++) { // columns from m1
+                  mResult[i][j] += m1[i][k] * m2[k][j];
+              }
+          }
+      }
+      return mResult;
+  }
+  
   
   /* Main method for testing - each class in Java can have a main 
    * method 
