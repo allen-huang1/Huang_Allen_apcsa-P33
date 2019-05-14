@@ -131,9 +131,9 @@ public class PictureTester
   
   public static void testEncode()
   {
-	  Picture crypt = new Picture("src/images/apple.jpg");
+	  Picture crypt = new Picture("src/images/beach.jpg");
 	  crypt.explore();
-	  Picture message = new Picture("src/images/msg.jpg");
+	  Picture message = new Picture("src/images/apple.jpg");
 	  crypt.encode(message);
 	  crypt.explore();
 	  Picture result = crypt.decode();

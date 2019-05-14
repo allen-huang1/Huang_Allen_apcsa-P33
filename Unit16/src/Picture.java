@@ -548,15 +548,19 @@ public class Picture extends SimplePicture
 			  while (isRelPrime(currPixel.getBlue(), key)) 
 			  {
 				  currPixel.setBlue(currPixel.getBlue()-1);
-			  }
+			  }//make all pixels not relatively prime
 			  
 			  if (messagePixel.colorDistance(Color.BLACK) < 50)
 			  {
+				  int initial = currPixel.getBlue();
 				  while(!isRelPrime(currPixel.getBlue(), key)) 
 				  {
-					  currPixel.setBlue(currPixel.getBlue() + 1);
+					  if (initial < 126)
+						  currPixel.setBlue(currPixel.getBlue() + 1);
+					  else
+						  currPixel.setBlue(currPixel.getBlue() - 1);
 				  }
-			  }
+			  }//make black pixels relatively prime again
 		  }
 	  }
   }
