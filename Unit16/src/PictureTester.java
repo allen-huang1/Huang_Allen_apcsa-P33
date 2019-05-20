@@ -133,7 +133,7 @@ public class PictureTester
   {
 	  Picture crypt = new Picture("src/images/beach.jpg");
 	  crypt.explore();
-	  Picture message = new Picture("src/images/apple.jpg");
+	  Picture message = new Picture("src/images/msg.jpg");
 	  crypt.encode(message);
 	  crypt.explore();
 	  Picture result = crypt.decode();
